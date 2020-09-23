@@ -12,7 +12,8 @@ return [
             'profile' => 'r,u'
         ],
         'user' => [
-            'profile' => 'r,u'
+            'profile' => 'r,u',
+            'filing' => 'c,r,u'
         ],
     ],
     'permission_structure' => [

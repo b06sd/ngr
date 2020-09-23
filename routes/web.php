@@ -14,4 +14,6 @@
 Route::get('/', 'Auth\LoginController@showLoginForm');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('filing', 'FilingController');
+Route::get('file-export', 'FilingController@fileExport')->name('filing.fileExport');
 

@@ -78,8 +78,7 @@
 
     <!-- Toastr -->
     <script src="{{ asset('assets/js/plugins/toastr/toastr.min.js') }}"></script>
-
-
+    @stack('team_crud')
     <script>
         $(document).ready(function() {
             setTimeout(function() {
@@ -89,7 +88,7 @@
                     showMethod: 'slideDown',
                     timeOut: 4000
                 };
-                toastr.success('Responsive Admin Theme', 'Welcome to INSPINIA');
+                toastr.success('Responsive Admin Theme', 'Welcome to NGR');
 
             }, 1300);
 

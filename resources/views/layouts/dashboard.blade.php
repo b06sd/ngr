@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">        
-    <title>{{ config('app.name', 'NGR') }}</title>
+    <title>NgrApp - @yield('title')</title>
 
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
@@ -79,6 +79,7 @@
     <!-- Toastr -->
     <script src="{{ asset('assets/js/plugins/toastr/toastr.min.js') }}"></script>
     @stack('team_crud')
+    @stack('upload')
     <script>
         $(document).ready(function() {
             setTimeout(function() {

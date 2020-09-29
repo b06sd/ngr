@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFilingsTable extends Migration
+class CreatePhysicalPlanningsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateFilingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('filings', function (Blueprint $table) {
+        Schema::create('physical_plannings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('payer_id')->nullable();
             $table->string('file_no');
             $table->string('name');
             $table->string('address')->nullable();
@@ -23,14 +24,14 @@ class CreateFilingsTable extends Migration
             $table->integer('structure_count')->nullable();
             $table->integer('floor_count')->nullable();
             $table->string('clearance')->nullable();
-            $table->date('date_sent_out')->nullable();
+            $table->string('date_sent_out')->nullable();
             $table->decimal('assessment')->nullable();
-            $table->enum('assessment_type', ['PAYE', 'RETIREE', 'OTHER'])->nullable();
+            $table->string('assessment_type')->nullable();
             $table->decimal('amount_paid')->nullable();
             $table->string('receipt_number')->nullable();
-            $table->date('date_paid')->nullable();
-            $table->date('process_in_date')->nullable();
-            $table->date('process_out_date')->nullable();
+            $table->string('date_paid')->nullable();
+            $table->string('process_in_date')->nullable();
+            $table->string('process_out_date')->nullable();
             $table->string('remarks')->nullable();
             $table->timestamps();
         });

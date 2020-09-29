@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Filing;
+use App\PhysicalPlanning;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
@@ -13,12 +13,13 @@ class FilingExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Filing::all();
+        return PhysicalPlanning::all();
     }
 
     public function headings(): array
     {
         return [
+            "payer_id",
             "file_no",
             "name",
             "address",
@@ -35,9 +36,7 @@ class FilingExport implements FromCollection, WithHeadings
             "date_paid",
             "process_in_date",
             "process_out_date",
-            "remarks",
-            "created_at",
-            "updated_at",               
+            "remarks",              
         ];
     }    
 }

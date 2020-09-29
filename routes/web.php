@@ -13,7 +13,14 @@
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('filing', 'FilingController');
-Route::get('file-export', 'FilingController@fileExport')->name('filing.fileExport');
+Route::group(['middleware' => ['auth']], function () { 
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('physical-planning', 'PhysicalPlanningController');
+    Route::get('physical-planning-file-export', 'PhysicalPlanningController@fileExport')->name('physical-planning.fileExport');
+    Route::post('physical-planning-file-import', 'PhysicalPlanningController@fileImport')->name('physical-planning.fileImport');
+    Route::get('get-all-physical-planning', 'PhysicalPlanningController@getAllPhysicalPlanningUploads')->name('get-all-physical-planning');
 
+    Route::resource('lands', 'LandController');
+    Route::get('lands-file-export', 'LandController@fileExport')->name('lands.fileExport');
+    Route::post('lands-file-import', 'LandController@fileImport')->name('lands.fileImport');    
+});

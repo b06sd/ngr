@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Filing;
+use File;
+use App\Land;
 use Illuminate\Http\Request;
-use App\Exports\FilingExport;
+use App\Exports\LandExport;
 use Maatwebsite\Excel\Facades\Excel;
 
-class FilingController extends Controller
+class LandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,17 @@ class FilingController extends Controller
      */
     public function index()
     {
-        $data = Filing::orderBy('id', 'desc')->get();
-        return view('filing.upload', compact('data'));
+        return view('lands.index');
     }
+
+    public function fileImport(Request $request)
+    {
+
+    }
+    public function fileExport() 
+    {
+        return Excel::download(new LandExport, 'land_template.csv');
+    }     
 
     /**
      * Show the form for creating a new resource.
@@ -44,10 +53,10 @@ class FilingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Filing  $filing
+     * @param  \App\Land  $land
      * @return \Illuminate\Http\Response
      */
-    public function show(Filing $filing)
+    public function show(Land $land)
     {
         //
     }
@@ -55,10 +64,10 @@ class FilingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Filing  $filing
+     * @param  \App\Land  $land
      * @return \Illuminate\Http\Response
      */
-    public function edit(Filing $filing)
+    public function edit(Land $land)
     {
         //
     }
@@ -67,10 +76,10 @@ class FilingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Filing  $filing
+     * @param  \App\Land  $land
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Filing $filing)
+    public function update(Request $request, Land $land)
     {
         //
     }
@@ -78,16 +87,11 @@ class FilingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Filing  $filing
+     * @param  \App\Land  $land
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Filing $filing)
+    public function destroy(Land $land)
     {
         //
     }
-
-    public function fileExport() 
-    {
-        return Excel::download(new FilingExport, 'physical_planning_template.csv');
-    } 
 }

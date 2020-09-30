@@ -35,6 +35,7 @@
     </nav>
         </div>
         @yield('content')
+        <br/>
         @include('partials.footer')
         </div>
     </div>

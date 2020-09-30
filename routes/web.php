@@ -18,9 +18,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('physical-planning', 'PhysicalPlanningController');
     Route::get('physical-planning-file-export', 'PhysicalPlanningController@fileExport')->name('physical-planning.fileExport');
     Route::post('physical-planning-file-import', 'PhysicalPlanningController@fileImport')->name('physical-planning.fileImport');
-    Route::get('get-all-physical-planning', 'PhysicalPlanningController@getAllPhysicalPlanningUploads')->name('get-all-physical-planning');
 
     Route::resource('lands', 'LandController');
     Route::get('lands-file-export', 'LandController@fileExport')->name('lands.fileExport');
     Route::post('lands-file-import', 'LandController@fileImport')->name('lands.fileImport');    
+
+    Route::resource('livesearchs', 'LiveSearchController');
+    Route::get('/livesearch/search', 'LiveSearchController@search')->name('livesearchs.search');
 });

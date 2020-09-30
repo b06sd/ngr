@@ -32,7 +32,7 @@
                     <a href="{{ route('lands.index') }}"><i class="fa fa-align-justify"></i> <span class="nav-label">Lands Upload</span> </a>
                     </li>                    
                     <li>
-                        <a href="{{ route('get-all-physical-planning') }}"><i class="fa fa-upload"></i> <span class="nav-label">View All Uploads</span> </a>
+                        <a href="{{ route('livesearchs.index') }}"><i class="fa fa-upload"></i> <span class="nav-label">Live Search</span> </a>
                     </li>                                      
                     <li>
                         <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

@@ -36,19 +36,13 @@ class PhysicalPlanningController extends Controller
        
        $parts = (array_chunk($data, 3000));
        foreach($parts as $index => $part){
-           $fileName = resource_path('pending-files/'.date('y-m-d-H-i-s').$index.'.csv');
+           $fileName = resource_path('pending-files/physical-planning/'.date('y-m-d-H-i-s').$index.'.csv');
            file_put_contents($fileName, $part);
        }
        (new PhysicalPlanning())->importToDb();
        session()->flash('status', 'queued for importing');
        return redirect('/physical-planning');
     }    
-
-    public function getAllPhysicalPlanningUploads()
-    {
-        $data = PhysicalPlanning::all();
-        return view('physicalplanning.planning', compact('data'));
-    }
 
     /**
      * Show the form for creating a new resource.

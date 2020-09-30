@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use File;
-use App\Land;
+use App\LiveSearch;
 use Illuminate\Http\Request;
-use App\Exports\LandExport;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Services\LiveSearchService;
 
-class LandController extends Controller
+
+class LiveSearchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,30 +16,23 @@ class LandController extends Controller
      */
     public function index()
     {
-        return view('lands.index');
+        return view('livesearchs.index');
     }
 
-    public function fileImport(Request $request)
+    public function search(Request $request)
     {
-        $request->validate([
-            'file' => 'required|mimes:csv,txt'
-        ]);
-        $file = file($request->file->getRealPath());
-        $data = array_slice($file, 1);
-        
-        $parts = (array_chunk($data, 3000));
-        foreach($parts as $index => $part){
-            $fileName = resource_path('pending-files/lands/'.date('y-m-d-H-i-s').$index.'.csv');
-            file_put_contents($fileName, $part);
+        $q = $request->input('q');
+        $entries = (new LiveSearchService())->getLiveSearchResult($request->input('q'));
+        //dd($entries[0]->fileNo);
+        if($entries != NULL)
+        {
+            return view('livesearchs.index', compact('entries', 'q'));
         }
-        (new Land())->importToDb();
-        session()->flash('status', 'queued for importing');
-        return redirect('/lands');
+        else{
+            return view('livesearchs.index')->withMessage('No Data found');
+        }
+        
     }
-    public function fileExport() 
-    {
-        return Excel::download(new LandExport, 'land_template.csv');
-    }     
 
     /**
      * Show the form for creating a new resource.
@@ -66,10 +58,10 @@ class LandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Land  $land
+     * @param  \App\LiveSearch  $liveSearch
      * @return \Illuminate\Http\Response
      */
-    public function show(Land $land)
+    public function show(LiveSearch $liveSearch)
     {
         //
     }
@@ -77,10 +69,10 @@ class LandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Land  $land
+     * @param  \App\LiveSearch  $liveSearch
      * @return \Illuminate\Http\Response
      */
-    public function edit(Land $land)
+    public function edit(LiveSearch $liveSearch)
     {
         //
     }
@@ -89,10 +81,10 @@ class LandController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Land  $land
+     * @param  \App\LiveSearch  $liveSearch
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Land $land)
+    public function update(Request $request, LiveSearch $liveSearch)
     {
         //
     }
@@ -100,10 +92,10 @@ class LandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Land  $land
+     * @param  \App\LiveSearch  $liveSearch
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Land $land)
+    public function destroy(LiveSearch $liveSearch)
     {
         //
     }

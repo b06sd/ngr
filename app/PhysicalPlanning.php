@@ -40,7 +40,7 @@ class PhysicalPlanning extends Model
         ini_set('max_execution_time', 6000);
         ini_set('memory_limit', '100000M');
         // set_time_limit(8000000);
-        $path = resource_path('pending-files/*.csv');
+        $path = resource_path('pending-files/physical-planning/*.csv');
         $files = glob($path);
 
         foreach($files as $file)

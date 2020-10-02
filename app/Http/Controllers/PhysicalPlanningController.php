@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use File;
+use DataTables;
 use App\PhysicalPlanning;
 use Illuminate\Http\Request;
 use App\Exports\FilingExport;
@@ -42,7 +43,26 @@ class PhysicalPlanningController extends Controller
        (new PhysicalPlanning())->importToDb();
        session()->flash('status', 'queued for importing');
        return redirect('/physical-planning');
-    }    
+    }  
+    
+    public function getAllPhysicalPlanning()
+    {
+        return view('physicalplanning.getAll');
+    }
+    
+    public function getAllPhysicalPlanningData(Request $request)
+    {
+            $physicalplanningdata = PhysicalPlanning::all();
+            return Datatables::of($physicalplanningdata)
+                    ->addColumn('action', function($row){
+                        $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editPhysicalPlanning">Edit</a>';    
+                        $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Show" class="btn btn-success btn-sm showPhysicalPlanning">Show</a>';
+                        return $btn;
+                    })
+                    ->editColumn('id', '{{$id}}')
+                    ->rawColumns(['action'])
+                    ->make(true);     
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -62,7 +82,12 @@ class PhysicalPlanningController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        PhysicalPlanning::updateOrCreate(['id' => $request->physical_planning_id],
+                ['name' => $request->name, 
+                'detail' => $request->detail
+                ]);        
+   
+        return response()->json(['success'=>'Physical Planning Profile saved successfully.']);
     }
 
     /**
@@ -82,9 +107,10 @@ class PhysicalPlanningController extends Controller
      * @param  \App\Filing  $filing
      * @return \Illuminate\Http\Response
      */
-    public function edit(Filing $filing)
+    public function edit($id)
     {
-        //
+        $physicalplanning = PhysicalPlanning::find($id);
+        return response()->json($physicalplanning);
     }
 
     /**

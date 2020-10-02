@@ -14,7 +14,9 @@
         "laravel/tinker": "^1.0",
         "maatwebsite/excel": "^3.1",
         "predis/predis": "^1.1",
-        "santigarcor/laratrust": "5.2.*"
+        "santigarcor/laratrust": "5.2.*",
+        "yajra/laravel-datatables": "^1.5",
+        "yajra/laravel-datatables-oracle": "^9.11"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

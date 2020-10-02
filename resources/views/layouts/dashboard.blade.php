@@ -13,6 +13,9 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 
+    <!-- DATATABLE style -->
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/dataTables/datatables.min.css') }}">
+
     <!-- Toastr style -->
     <link href="{{ asset('assets/css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
 
@@ -47,6 +50,10 @@
     <script src="{{ asset('assets/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
     <script src="{{ ('assets/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
+    <!-- DATATABLE script -->
+    <script src="{{ asset('assets/js/plugins/dataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/dataTables/dataTables.bootstrap4.min.js') }}"></script>
+
     <!-- Flot -->
     <script src="{{ asset('assets/js/plugins/flot/jquery.flot.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
@@ -79,6 +86,9 @@
 
     <!-- Toastr -->
     <script src="{{ asset('assets/js/plugins/toastr/toastr.min.js') }}"></script>
+    @stack('dt-planning')
+    @stack('dt-lands') 
+    @stack('dt-horc')   
     @stack('team_crud')
     @stack('upload')
     <script>

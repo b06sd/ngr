@@ -26,11 +26,20 @@
                     </li>
                     @endrole
                     <li>
-                        <a href="{{ route('physical-planning.index') }}"><i class="fa fa-align-justify"></i> <span class="nav-label">Physical Planning</span> </a>
+                        <a href="#" aria-expanded="false"><i class="fa fa-align-justify"></i> <span class="nav-label">Manage Physical Planning</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="false">
+                            <li><a href="{{ route('physical-planning.index') }}">Physical Planning Upload</a></li>
+                            <li><a href="{{ route('physical-planning.getAllPhysicalPlanning')}}">All Physical Planning</a></li>
+                        </ul>
                     </li>
+
                     <li>
-                    <a href="{{ route('lands.index') }}"><i class="fa fa-align-justify"></i> <span class="nav-label">Lands Upload</span> </a>
-                    </li>                    
+                        <a href="#" aria-expanded="false"><i class="fa fa-align-justify"></i> <span class="nav-label">Manage Lands</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="false">
+                            <li><a href="{{ route('lands.index') }}">Lands Upload</a></li>
+                            <li><a href="{{ route('lands.getAllLands') }}">All Lands Data</a></li>
+                        </ul>
+                    </li>                                       
                     <li>
                         <a href="{{ route('livesearchs.index') }}"><i class="fa fa-upload"></i> <span class="nav-label">Live Search</span> </a>
                     </li>                                      

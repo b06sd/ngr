@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use File;
 use App\Land;
+use DataTables;
 use Illuminate\Http\Request;
 use App\Exports\LandExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,6 +20,25 @@ class LandController extends Controller
     {
         return view('lands.index');
     }
+
+    public function getAllLands()
+    {
+        return view('lands.getAll');
+    }
+    
+    public function getAllLandsData(Request $request)
+    {
+            $landdata = Land::all();
+            return Datatables::of($landdata)
+                    ->addColumn('action', function($row){
+                        $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editPhysicalPlanning">Edit</a>';    
+                        $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Show" class="btn btn-success btn-sm showPhysicalPlanning">Show</a>';
+                        return $btn;
+                    })
+                    ->editColumn('id', '{{$id}}')
+                    ->rawColumns(['action'])
+                    ->make(true);     
+    }    
 
     public function fileImport(Request $request)
     {

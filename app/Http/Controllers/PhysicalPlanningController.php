@@ -49,6 +49,11 @@ class PhysicalPlanningController extends Controller
     {
         return view('physicalplanning.getAll');
     }
+
+    public function getPhysicalPlanningById($id)
+    {
+        $dataById = PhysicalPlanning::findOrFail($id);
+    }
     
     public function getAllPhysicalPlanningData(Request $request)
     {
@@ -56,7 +61,7 @@ class PhysicalPlanningController extends Controller
             return Datatables::of($physicalplanningdata)
                     ->addColumn('action', function($row){
                         $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editPhysicalPlanning">Edit</a>';    
-                        $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Show" class="btn btn-success btn-sm showPhysicalPlanning">Show</a>';
+                        $btn = $btn.' <a href="javascript:void(0)" data-toggle="modal" data-target="#planningModal"  data-id="'.$row->id.'" data-original-title="Show" class="btn btn-success btn-sm showPhysicalPlanning">Show</a>';
                         return $btn;
                     })
                     ->editColumn('id', '{{$id}}')
@@ -82,9 +87,26 @@ class PhysicalPlanningController extends Controller
      */
     public function store(Request $request)
     {
-        PhysicalPlanning::updateOrCreate(['id' => $request->physical_planning_id],
-                ['name' => $request->name, 
-                'detail' => $request->detail
+        PhysicalPlanning::updateOrCreate(['id' => $request->id],
+                [
+         'payer_id' => $request->payer_id,
+         'file_no' => $request->file_no,
+         'name' => $request->name,
+         'address' => $request->address,
+         'dev_location' => $request->dev_location,
+         'development_type' => $request->development_type,
+         'structure_count' => $request->structure_count,
+         'floor_count' => $request->floor_count,
+         'clearance' => $request->clearance,
+         'date_sent_out' => $request->date_sent_out,
+         'assessment' => $request->assessment,
+         'assessment_type' => $request->assessment_type,
+         'amount_paid' => $request->amount_paid,
+         'receipt_number' => $request->receipt_number,
+         'date_paid' => $request->date_paid,
+         'process_in_date' => $request->process_in_date,
+         'process_out_date' => $request->process_out_date,
+         'remarks' => $request->remarks,
                 ]);        
    
         return response()->json(['success'=>'Physical Planning Profile saved successfully.']);

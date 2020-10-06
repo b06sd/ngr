@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('physical-planning-file-import', 'PhysicalPlanningController@fileImport')->name('physical-planning.fileImport');
     Route::get('get-all-planning', 'PhysicalPlanningController@getAllPhysicalPlanning')->name('physical-planning.getAllPhysicalPlanning');
     Route::get('getAllPlanningData', 'PhysicalPlanningController@getAllPhysicalPlanningData')->name('physical-planning.getAllPhysicalPlanningData');
+    Route::get('/getById/{id}', 'PhysicalPlanningController@getPhysicalPlanningById')->name('physical-planning.getPhysicalPlanningById');
 
     Route::resource('lands', 'LandController');
     Route::get('lands-file-export', 'LandController@fileExport')->name('lands.fileExport');

@@ -31,14 +31,20 @@ class LandController extends Controller
             $landdata = Land::all();
             return Datatables::of($landdata)
                     ->addColumn('action', function($row){
-                        $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editPhysicalPlanning">Edit</a>';    
+                        $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editPhysicalPlanning">Edit</a> ';    
                         $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Show" class="btn btn-success btn-sm showPhysicalPlanning">Show</a>';
                         return $btn;
                     })
                     ->editColumn('id', '{{$id}}')
                     ->rawColumns(['action'])
                     ->make(true);     
-    }    
+    }  
+    
+    public function getLandDataById($id)
+    {
+        $landdatabyid = Land::findOrFail($id);
+        return $landdatabyid;
+    }
 
     public function fileImport(Request $request)
     {

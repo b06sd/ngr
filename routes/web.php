@@ -26,7 +26,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('lands-file-export', 'LandController@fileExport')->name('lands.fileExport');
     Route::post('lands-file-import', 'LandController@fileImport')->name('lands.fileImport');   
     Route::get('get-all-lands', 'LandController@getAllLands')->name('lands.getAllLands');
-    Route::get('getAllLandsData', 'LandController@getAllLandsData')->name('lands.getAllLandsData');     
+    Route::get('getAllLandsData', 'LandController@getAllLandsData')->name('lands.getAllLandsData');   
+    
+    Route::resource('horcs', 'HorcController');
+    Route::post('horc-file-import', 'HorcController@fileImport')->name('horc.fileImport');  
+    Route::get('horc-file-export', 'HorcController@fileExport')->name('horc.fileExport');
 
     Route::resource('livesearchs', 'LiveSearchController');
     Route::get('/livesearch/search', 'LiveSearchController@search')->name('livesearchs.search');

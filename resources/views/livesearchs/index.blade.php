@@ -116,6 +116,48 @@
 
             </div> 
         </div>              
-        @endif       
+        @endif  
+        
+        
+        @if (isset($entries[2]))
+        <br><br>
+        <div class="col-md-12">
+            <div class="ibox-content">         
+
+                <p> <h4>The Search results for your query in Horc table for <b style="text-transform: uppercase;"> {{ $q }} </b> are :</h4></p>
+            <h2>Search result details</h2>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Payer ID</th>
+                        <th>Business Name</th>
+                        <th>Address</th>
+                        <th>Nature</th>
+                        <th>Ownership</th>
+                        <th>Contact Number</th>
+                        <th>File Number</th>
+                        <th>Horc Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($entries[2] as $item)
+                    <tr>
+                        <td>{{$item->payer_id}}</td>
+                        <td>{{$item->business_name}}</td>
+                        <td>{{$item->address}}</td>
+                        <td>{{$item->nature}}</td>
+                        <td>{{$item->ownership}}</td>
+                        <td>{{$item->contact_number}}</td>
+                        <td>{{$item->file_no}}</td>
+                        <td>{{$item->horc_no}}</td>
+                    </tr>                           
+                    @endforeach
+                </tbody>
+            </table>
+
+            </div> 
+        </div>              
+        @endif          
 
 @endsection

@@ -16,7 +16,7 @@
         </ol>
     </div>
     
-    </div> 
+</div> 
     
     <br/>
         <div class="col-lg-12">

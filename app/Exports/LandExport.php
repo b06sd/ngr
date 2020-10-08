@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Land;
+use Illuminate\Database\Eloquent\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
@@ -13,7 +14,8 @@ class LandExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Land::all();
+        $c = Collection::make(new Land);
+        return $c;
     }
 
     public function headings(): array

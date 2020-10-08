@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Land;
+use App\Horc;
 use App\LiveSearch;
 use App\PhysicalPlanning;
 
@@ -28,8 +29,22 @@ class LiveSearchService{
         ->orWhere('clearance','like', '%'.$query.'%')
         ->orWhere('receipt_number', 'like', '%'.$query.'%')
         ->orderBy('file_no', 'desc')
-        ->get();        
+        ->get(); 
+        
+        $horc_data = Horc::where('file_no', 'like', '%'.$query.'%')
+        ->orWhere('payer_id', 'like', '%'.$query.'%')
+        ->orWhere('business_name', 'like', '%'.$query.'%')
+        ->orWhere('address', 'like', '%'.$query.'%')
+        ->orWhere('nature','like', '%'.$query.'%')
+        ->orWhere('ownership','like', '%'.$query.'%')
+        ->orWhere('contact_number','like', '%'.$query.'%')
+        ->orWhere('email', 'like', '%'.$query.'%')
+        ->orWhere('owners_address', '%'.$query.'%')
+        ->orWhere('file_no', '%'.$query.'%')
+        ->orWhere('horc_no', '%'.$query.'%')
+        ->orderBy('file_no', 'desc')
+        ->get();         
 
-        return [$land_data, $planning_data];
+        return [$land_data, $planning_data, $horc_data];
     }
 }

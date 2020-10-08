@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\PhysicalPlanning;
+use Illuminate\Database\Eloquent\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
@@ -13,7 +14,8 @@ class FilingExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return PhysicalPlanning::all();
+        $c = Collection::make(new PhysicalPlanning);
+        return $c;
     }
 
     public function headings(): array

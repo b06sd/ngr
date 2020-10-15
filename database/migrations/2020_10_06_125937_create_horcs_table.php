@@ -24,7 +24,7 @@ class CreateHorcsTable extends Migration
             $table->string('email')->nullable();
             $table->string('owners_address')->nullable();
             $table->string('registration_date')->nullable();
-            $table->string('file_no')->nullable();
+            $table->string('file_no');
             $table->string('horc_no')->nullable();
             $table->timestamps();
         });

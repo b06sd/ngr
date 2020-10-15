@@ -25,21 +25,21 @@ class LandController extends Controller
     {
         return view('lands.getAll');
     }
-    
+
     public function getAllLandsData(Request $request)
     {
             $landdata = Land::all();
             return Datatables::of($landdata)
                     ->addColumn('action', function($row){
-                        $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editPhysicalPlanning">Edit</a> ';    
-                        $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Show" class="btn btn-success btn-sm showPhysicalPlanning">Show</a>';
+                        $btn = '<a href="javascript:void(0)" data-toggle="modal" data-target="#crudModal" id="edit-land"  data-id="'.$row->id.'" class="btn btn-primary btn-sm">Edit</a> ';
+                        $btn = $btn.' <a href="'.route("lands.detail", $row->id).'" data-id="'.$row->id.'" id="show-land" class="btn btn-success btn-sm">Show</a>';
                         return $btn;
                     })
                     ->editColumn('id', '{{$id}}')
                     ->rawColumns(['action'])
-                    ->make(true);     
-    }  
-    
+                    ->make(true);
+    }
+
     public function getLandDataById($id)
     {
         $landdatabyid = Land::findOrFail($id);
@@ -53,7 +53,7 @@ class LandController extends Controller
         ]);
         $file = file($request->file->getRealPath());
         $data = array_slice($file, 1);
-        
+
         $parts = (array_chunk($data, 3000));
         foreach($parts as $index => $part){
             $fileName = resource_path('pending-files/lands/'.date('y-m-d-H-i-s').$index.'.csv');
@@ -63,10 +63,10 @@ class LandController extends Controller
         session()->flash('status', 'queued for importing');
         return redirect('/lands');
     }
-    public function fileExport() 
+    public function fileExport()
     {
         return Excel::download(new LandExport, 'land_template.csv');
-    }     
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -86,7 +86,33 @@ class LandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Land::updateOrCreate(['id' => $request->id],[
+            'payer_id' => $request->payer_id,
+            'fileNo' => $request->fileNo,
+            'Date' => $request->Date,
+            'column1' => $request->column1,
+            'natOfBus' => $request->natOfBus,
+            'propLocation' => $request->propLocation,
+            'value' => $request->value,
+            'assignor' => $request->assignor,
+            'column2' => $request->column2,
+            'address1' => $request->address1,
+            'assignee' => $request->assignee,
+            'column3' => $request->column3,
+            'address2' => $request->address2,
+            'cgt' => $request->cgt,
+            'assignorPay' => $request->assignorPay,
+            'assigneePay' => $request->assigneePay,
+            'borrowers' => $request->borrowers,
+            'stampDuty' => $request->stampDuty,
+            'premises' => $request->premises,
+        ]);
+        if (empty($request->id))
+            $msg = 'Land entry created successfully.';
+        else
+            $msg = 'Land entry updated successfully.';
+
+        return redirect('get-all-lands')->with('success', $msg);
     }
 
     /**
@@ -95,9 +121,10 @@ class LandController extends Controller
      * @param  \App\Land  $land
      * @return \Illuminate\Http\Response
      */
-    public function show(Land $land)
+    public function show($id)
     {
-        //
+        $land = Land::findOrFail($id);
+        return view('lands.detail', compact('land'));
     }
 
     /**
@@ -106,9 +133,10 @@ class LandController extends Controller
      * @param  \App\Land  $land
      * @return \Illuminate\Http\Response
      */
-    public function edit(Land $land)
+    public function edit($id)
     {
-        //
+        $land = Land::findOrFail($id);
+        return $land;
     }
 
     /**

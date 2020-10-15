@@ -32,7 +32,7 @@
                         <a href="#" aria-expanded="false"><i class="fa fa-upload"></i> <span class="nav-label">Manage Lands</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false">
                             <li><a href="{{ route('lands.index') }}">Lands Upload</a></li>
-                            <li><a href="{{ route('lands.getAllLands') }}">All Lands Data</a></li>
+                            <li><a href="{{ route('lands.getAllLands') }}">All Lands</a></li>
                         </ul>
                     </li>
                     
@@ -40,10 +40,11 @@
                         <a href="#" aria-expanded="false"><i class="fa fa-upload"></i> <span class="nav-label">Manage HORC</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false">
                             <li><a href="{{ route('horcs.index') }}">Lands Upload</a></li>
+                            <li><a href="{{ route('horcs.getAllHorcs') }}">All HORC</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" aria-expanded="false"><i class="fa fa-dashboard"></i> <span class="nav-label">Reports</span><span class="fa arrow"></span></a>
+                        <a href="#" aria-expanded="false"><i class="fa fa-dashboard"></i> <span class="nav-label">Reporting</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false">
                             <li><a href="#">Physical Planning</a></li>
                             <li><a href="#">Lands Bureau</a></li>

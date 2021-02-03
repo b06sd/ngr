@@ -39,7 +39,7 @@
                     <li>
                         <a href="#" aria-expanded="false"><i class="fa fa-upload"></i> <span class="nav-label">Manage HORC</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false">
-                            <li><a href="{{ route('horcs.index') }}">Lands Upload</a></li>
+                            <li><a href="{{ route('horcs.index') }}">HORC Upload</a></li>
                             <li><a href="{{ route('horcs.getAllHorcs') }}">All HORC</a></li>
                         </ul>
                     </li>

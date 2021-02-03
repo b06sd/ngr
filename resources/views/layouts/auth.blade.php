@@ -23,11 +23,11 @@
         <div>
             <div>
 
-                <h1 class="logo-name">NG+</h1>
+                <h1 class="logo-name">LIRS</h1>
 
             </div>
-            <h3>Welcome to NGR</h3>
-            <p>Login in. To see it in action.</p>
+            <h3>Lagos State Internal Revenue Service</h3>
+            <p>Login in.</p>
                 @yield('content')
             <p class="m-t"> <small>New Growth Application &copy; 2020 IT Unit</small> </p>
         </div>

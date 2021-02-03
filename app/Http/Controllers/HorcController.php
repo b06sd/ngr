@@ -53,7 +53,7 @@ class HorcController extends Controller
 
     public function getAllHorcsData(Request $request)
     {
-            $horcdata = Horc::all();
+            $horcdata = Horc::select('*');
             return Datatables::of($horcdata)
                     ->addColumn('action', function($row){
                         $btn = '<a href="javascript:void(0)" data-toggle="modal" id="edit-horc" data-target="#editHorcModal"  data-id="'.$row->id.'"  class="edit btn btn-primary btn-sm">Edit</a> ';

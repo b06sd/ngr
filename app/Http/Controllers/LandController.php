@@ -28,7 +28,7 @@ class LandController extends Controller
 
     public function getAllLandsData(Request $request)
     {
-            $landdata = Land::all();
+            $landdata = Land::select('*');
             return Datatables::of($landdata)
                     ->addColumn('action', function($row){
                         $btn = '<a href="javascript:void(0)" data-toggle="modal" data-target="#crudModal" id="edit-land"  data-id="'.$row->id.'" class="btn btn-primary btn-sm">Edit</a> ';

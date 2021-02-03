@@ -4,7 +4,7 @@
 @section('content')
     <div class="row  border-bottom white-bg dashboard-header">
         <div class="col-md-3">
-            <h2>Lands</h2>
+            <h2>Physical Planning</h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="/">Home</a>

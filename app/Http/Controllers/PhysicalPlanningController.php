@@ -60,7 +60,7 @@ class PhysicalPlanningController extends Controller
 
     public function getAllPhysicalPlanningData(Request $request)
     {
-        $physicalplanningdata = PhysicalPlanning::all();
+        $physicalplanningdata = PhysicalPlanning::select('*');
         return Datatables::of($physicalplanningdata)
             ->addColumn('action', function ($row) {
                 $btn = '<a href="javascript:void(0)" class="btn btn-primary btn-sm" id="edit-planning" data-toggle="modal" data-target="#crud-modal" data-id="' . $row->id . '">Edit </a>';

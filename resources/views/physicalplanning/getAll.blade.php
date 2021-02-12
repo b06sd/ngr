@@ -387,8 +387,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: 'http://localhost:8000/getAllPlanningData',
-                dom: 'Bfrtip',
-                timeout:150000
+                dom: 'Bfrtip'
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ],

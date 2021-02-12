@@ -220,6 +220,7 @@ $('.dt-lands').DataTable({
     serverSide: true,
     ajax: 'http://localhost:8000/getAllLandsData',
     dom: 'Bfrtip',
+    timeout:150000
     buttons: [
         'copy', 'csv', 'excel', 'pdf', 'print'
     ],

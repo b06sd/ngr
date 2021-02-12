@@ -57,7 +57,7 @@
                 </ul>
             </li> 
             @endrole
-            @role('newgrowth')                                    
+            @role(['newgrowth', 'administrator'])                                    
             <li>
                 <a href="{{ route('livesearchs.index') }}"><i class="fa fa-search"></i> <span class="nav-label">Search Database</span> </a>
             </li> 

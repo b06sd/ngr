@@ -34,9 +34,9 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="{{ secure_asset('asset/js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ secure_asset('asset/js/popper.min.js') }}"></script>
+    <script src="{{ secure_asset('asset/js/bootstrap.js') }}"></script>
 
 </body>
 
